@@ -57,7 +57,7 @@ app.use((req, res, next) => {
   }
 
   
-import path from "path";
+import * as path from "path";
 
 const staticPath = path.resolve(__dirname, "public");
 app.use(express.static(staticPath));
