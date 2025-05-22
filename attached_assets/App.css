@@ -1,0 +1,622 @@
+/* --- Global Styles & Variables --- */
+:root {
+  --primary-bg-dark: rgba(0, 0, 0, 0.7); /* Darker base for containers */
+  --primary-bg-light: rgba(255, 255, 255, 0.05); /* Very light, subtle overlay */
+  --secondary-bg-light: rgba(168, 218, 220, 0.1); /* Frosted light blue/cyan for elements */
+  --accent-color-light: #80DEEA; /* Light blue-green */
+  --accent-color-medium: #4DB6AC; /* Teal */
+  --text-color-light: rgba(255, 255, 255, 0.9); /* Darker white for improved legibility */
+  --text-color-lighter: #CFD8DC; /* Lighter gray for secondary text */
+  --border-color-subtle: rgba(255, 255, 255, 0.2); /* Soft border for elements */
+  --button-hover-bg: rgba(168, 218, 220, 0.25); /* Slightly more opaque on hover */
+  --button-active-bg: rgba(168, 218, 220, 0.35); /* Even more opaque on active */
+  --box-shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.6);
+  --box-shadow-inset: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* --- Main App Container --- */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color-light);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  transition: background-image 2s ease-in-out;
+  position: relative; /* Needed for video overlay */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* --- Lantern Mode Video Background --- */
+.lantern-video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.7; /* Slightly faded */
+  filter: brightness(0.6); /* Darken for readability */
+}
+
+/* --- Porsche Surprise Overlay --- */
+.porsche-surprise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8); /* Darker overlay for strong contrast */
+  z-index: 1000;
+  opacity: 1; /* Always visible when active */
+  transition: opacity 0.5s ease-in-out; /* Smooth transition */
+}
+
+.porsche-surprise-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.close-porsche-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  z-index: 1001;
+  transition: background-color 0.2s ease;
+}
+
+.close-porsche-button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+
+/* --- Header --- */
+.App-header {
+  text-align: center;
+  padding: 25px 20px 15px; /* Adjust padding for better spacing */
+  background: var(--primary-bg-dark);
+  backdrop-filter: blur(10px); /* Medium blur for header */
+  border-radius: 0 0 15px 15px;
+  box-shadow: var(--box-shadow-dark);
+}
+
+.App-title {
+  font-size: 3.5em; /* Slightly larger title */
+  margin: 0;
+  letter-spacing: 4px; /* Increased letter spacing */
+  font-weight: 300; /* Lighter font weight */
+  color: var(--accent-color-light);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.2;
+}
+
+.App-quote {
+  font-size: 1.1em;
+  font-style: italic;
+  margin-top: 5px;
+  color: var(--text-color-lighter);
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+.datetime-container {
+  font-size: 1.2em;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center; /* Centered */
+  gap: 25px; /* Increased gap */
+  opacity: 0.9;
+  color: var(--text-color-lighter);
+}
+
+/* --- Main Content Area --- */
+.App-main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align content to top */
+  padding: 30px 20px; /* More padding around content */
+}
+
+/* --- Journal Area --- */
+.journal-area,
+.history-area {
+  background: var(--primary-bg-dark);
+  backdrop-filter: blur(12px); /* Stronger blur for journal content */
+  padding: 35px; /* Increased padding */
+  border-radius: 18px; /* Slightly more rounded corners */
+  width: 100%;
+  max-width: 900px; /* Wider journal area */
+  box-shadow: var(--box-shadow-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--border-color-subtle);
+  position: relative; /* Needed for whisper nudge positioning if absolute */
+}
+
+.prompt-box {
+  background: var(--secondary-bg-light); /* Frosted light blue/cyan */
+  padding: 20px 28px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--box-shadow-inset);
+  border-left: 5px solid var(--accent-color-light); /* Accent color border */
+  color: var(--text-color-light);
+  line-height: 1.6;
+}
+
+.prompt-box p {
+  font-style: italic;
+  margin-bottom: 8px; /* Space between text and credit */
+  font-size: 1.1em;
+}
+
+.prompt-box span {
+  font-size: 0.85em;
+  opacity: 0.85;
+  color: var(--text-color-lighter);
+}
+
+.journal-textarea {
+  width: calc(100% - 40px); /* Adjust for padding */
+  height: 350px; /* Taller textarea */
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color-subtle);
+  background: var(--primary-bg-light); /* Lighter transparent background */
+  color: var(--text-color-light);
+  font-size: 1.15em; /* Slightly larger font */
+  line-height: 1.9; /* More line spacing */
+  resize: vertical;
+  margin-bottom: 25px;
+  box-shadow: var(--box-shadow-inset);
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none; /* Remove default outline */
+}
+
+.journal-textarea::placeholder {
+  color: var(--text-color-lighter);
+  opacity: 0.7;
+}
+
+.journal-textarea:focus {
+  border-color: var(--accent-color-light);
+  box-shadow: inset 0 0 15px rgba(128, 222, 234, 0.2), 0 0 8px rgba(128, 222, 234, 0.4);
+}
+
+.typing-indicator {
+  font-size: 0.95em;
+  opacity: 0.7;
+  margin-top: -15px; /* Closer to textarea */
+  margin-bottom: 15px;
+  color: var(--accent-color-light);
+}
+
+/* --- Common Button Styles --- */
+.App-button {
+  background: var(--secondary-bg-light); /* Frosted light blue/cyan */
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color-subtle);
+  padding: 12px 22px;
+  border-radius: 8px; /* Slightly more rounded */
+  cursor: pointer;
+  font-size: 1.05em; /* Slightly larger font */
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  min-width: 160px; /* Ensure consistent button width */
+  white-space: nowrap;
+}
+
+.App-button:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  border-color: var(--accent-color-medium);
+}
+
+.App-button:active {
+  transform: translateY(0);
+  background: var(--button-active-bg);
+}
+
+/* --- Journal Buttons Container --- */
+.journal-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px; /* More space between buttons */
+  justify-content: center;
+  width: 100%;
+}
+
+/* --- Category Dropdown --- */
+.category-dropdown-wrapper {
+    position: relative;
+    display: inline-block; /* Allows button to maintain its size */
+}
+
+.category-dropdown-content {
+    position: absolute;
+    top: calc(100% + 10px); /* Position further below the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-bg-dark); /* Darker, more opaque background for dropdown */
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-dark);
+    z-index: 20; /* High z-index to be on top */
+    display: flex;
+    flex-direction: column;
+    min-width: 200px; /* Wider dropdown */
+    border: 1px solid var(--accent-color-medium); /* Accent border */
+    max-height: 350px; /* Limit height for scroll */
+    overflow-y: auto;
+    opacity: 1; /* Ensure full opacity */
+    transition: opacity 0.2s ease-in-out;
+}
+
+.dropdown-item {
+    background: transparent;
+    color: var(--text-color-lighter);
+    border: none;
+    padding: 14px 20px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background: var(--secondary-bg-light); /* Use frosted light blue/cyan for hover */
+    color: var(--text-color-light);
+}
+
+.dropdown-item:first-of-type {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.dropdown-item:last-of-type {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* --- Whisper Nudge Box --- */
+.whisper-nudge-box {
+    margin-top: 30px; /* Space from buttons */
+    background: var(--secondary-bg-light); /* Frosted light blue/cyan */
+    border: 1px solid var(--accent-color-light);
+    border-radius: 10px;
+    padding: 15px 25px;
+    width: 80%; /* Takes up a good portion of the width */
+    text-align: center;
+    font-style: italic;
+    font-size: 1.05em;
+    color: var(--text-color-light);
+    opacity: 0.9;
+    box-shadow: var(--box-shadow-inset);
+    line-height: 1.5;
+}
+
+.whisper-nudge-text {
+    margin: 0;
+}
+
+/* --- History Area --- */
+.history-area {
+  padding-bottom: 20px; /* Add padding for scrollbar */
+}
+
+.history-title {
+  text-align: center;
+  color: var(--accent-color-light);
+  font-size: 2.2em;
+  margin-bottom: 25px;
+}
+
+.search-bar {
+  width: calc(100% - 40px);
+  padding: 15px 25px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color-subtle);
+  background: var(--primary-bg-light);
+  color: var(--text-color-light);
+  font-size: 1.1em;
+  box-shadow: var(--box-shadow-inset);
+  outline: none;
+}
+
+.search-bar::placeholder {
+  color: var(--text-color-lighter);
+  opacity: 0.7;
+}
+
+.search-bar:focus {
+    border-color: var(--accent-color-light);
+    box-shadow: inset 0 0 15px rgba(128, 222, 234, 0.2), 0 0 8px rgba(128, 222, 234, 0.4);
+}
+
+.history-list {
+  max-height: 60vh; /* Controlled height for scrolling */
+  overflow-y: auto;
+  padding-right: 15px; /* Space for scrollbar */
+}
+
+.entry-card {
+  background: var(--secondary-bg-light); /* Frosted light blue/cyan */
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  border-left: 5px solid var(--accent-color-medium); /* Teal accent border */
+  color: var(--text-color-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entry-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.entry-card-title {
+  margin: 0 0 8px 0;
+  color: var(--accent-color-light);
+  font-size: 1.4em;
+  line-height: 1.4;
+}
+
+.entry-card-meta {
+  font-size: 0.95em;
+  opacity: 0.85;
+  margin-bottom: 15px;
+  color: var(--text-color-lighter);
+}
+
+.entry-card-content {
+  font-size: 1.05em;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-height: 120px; /* Limit height for content snippet */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Limit to 5 lines */
+  -webkit-box-orient: vertical;
+  color: var(--text-color-light);
+}
+
+.entry-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+.entry-action-button {
+    min-width: unset; /* Remove min-width for history buttons */
+    padding: 8px 15px; /* Smaller padding */
+    font-size: 0.95em;
+    background: var(--accent-color-medium); /* Teal for action buttons */
+    border-color: var(--accent-color-medium);
+}
+
+.entry-action-button:hover {
+    background: var(--accent-color-light); /* Lighter teal on hover */
+    border-color: var(--accent-color-light);
+}
+
+.delete-button {
+  background: #EF5350; /* Red color for delete */
+  border-color: #EF5350;
+}
+
+.delete-button:hover {
+  background: #E53935; /* Darker red on hover */
+  border-color: #E53935;
+}
+
+.no-entries-message {
+  text-align: center;
+  opacity: 0.7;
+  color: var(--text-color-lighter);
+  margin-top: 40px;
+  font-size: 1.1em;
+}
+
+/* --- Footer --- */
+.App-footer {
+  text-align: center;
+  padding: 25px 20px;
+  background: var(--primary-bg-dark);
+  backdrop-filter: blur(10px);
+  border-radius: 15px 15px 0 0;
+  margin-top: 30px; /* More space above footer */
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+}
+
+.footer-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.toggle-lantern-button .lantern-icon {
+  height: 1.4em; /* Slightly larger icon */
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.clear-all-button {
+    background: #FF5252; /* Brighter red for destructive action */
+    border-color: #FF5252;
+}
+.clear-all-button:hover {
+    background: #D32F2F;
+    border-color: #D32F2F;
+}
+
+.footer-credit {
+  margin-top: 10px;
+  font-size: 0.95em;
+  opacity: 0.9;
+  color: var(--text-color-lighter);
+}
+
+/* --- Notification --- */
+.notification {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8); /* Slightly darker for prominence */
+  color: var(--text-color-light);
+  padding: 14px 28px;
+  border-radius: 10px;
+  z-index: 1000;
+  font-size: 1.05em;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  border: 1px solid var(--accent-color-light);
+  animation: fadeInOut 3s forwards; /* Use animation */
+}
+
+/* --- Keyframes for Notification Animation --- */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .App-title {
+    font-size: 2.5em;
+  }
+  .App-quote {
+      font-size: 1em;
+  }
+  .datetime-container {
+    font-size: 1em;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .journal-area,
+  .history-area {
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .journal-textarea {
+    height: 250px;
+    padding: 15px;
+    font-size: 1em;
+  }
+  .prompt-box {
+      padding: 15px 20px;
+  }
+  .prompt-box p {
+      font-size: 1em;
+  }
+  .App-button {
+    padding: 10px 18px;
+    font-size: 0.9em;
+    min-width: unset;
+  }
+  .journal-buttons-container,
+  .footer-buttons-container {
+      gap: 10px;
+  }
+  .category-dropdown-content {
+      min-width: 160px;
+  }
+  .dropdown-item {
+      padding: 10px 15px;
+      font-size: 0.9em;
+  }
+  .whisper-nudge-box {
+      width: 95%;
+      padding: 12px 18px;
+      font-size: 0.9em;
+  }
+  .entry-card {
+      padding: 18px;
+  }
+  .entry-card-title {
+      font-size: 1.2em;
+  }
+  .entry-card-content {
+      font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-title {
+    font-size: 2em;
+  }
+  .journal-area,
+  .history-area {
+    padding: 15px;
+  }
+  .journal-textarea {
+      height: 200px;
+      padding: 12px;
+  }
+  .App-button {
+      width: 100%; /* Full width buttons on small screens */
+  }
+  .entry-actions {
+      flex-direction: column;
+      gap: 8px;
+  }
+  .entry-action-button {
+      width: 100%;
+  }
+  .notification {
+      font-size: 0.9em;
+      padding: 10px 20px;
+  }
+}

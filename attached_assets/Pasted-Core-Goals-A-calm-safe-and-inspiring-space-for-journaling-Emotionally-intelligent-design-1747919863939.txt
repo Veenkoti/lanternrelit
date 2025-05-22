@@ -1,0 +1,113 @@
+Core Goals
+
+    A calm, safe, and inspiring space for journaling
+
+    Emotionally intelligent design that adapts to mood
+
+    Encourage consistent self-reflection, healing, and growth
+
+    Visual and sensory immersion through dynamic themes and visuals
+
+    Lightweight, responsive, and accessible for desktop and mobile
+
+Journal Core Features
+
+    Write and save journal entries
+
+    Auto-save drafts after inactivity
+
+    Enhanced save with metadata (mood, tags, prompt, read time)
+
+    View journal history
+
+    Search through entries with debounce
+
+    Delete individual entries
+
+    Clear all data with confirmation
+
+    Download single entry or all entries
+
+    Copy current entry to clipboard
+
+Prompt System
+
+    Prompt categories: emotional, healing, mindfulness, gratitude, self-care, inspiration, whisper
+
+    Whisper prompts for introspection
+
+    Avoid repeating previous prompts
+
+    Prompt count tracking
+
+    Surprise element (Porsche after every 10 prompts)
+
+Visual and UI Enhancements
+
+    Dynamic background based on mood
+
+    Backgrounds sourced from Unsplash via mood mapping
+
+    Lantern mode (ambient video overlay)
+
+    Porsche surprise feature
+
+    Theme selector (Nordic, Ocean, Forest, Sunset)
+
+    Responsive layout and smooth transitions
+
+Mood and Insight Tracking
+
+    Mood selection with emoji and color
+
+    Mood-based background change
+
+    Mood history logging
+
+    Insights dashboard: most used moods, average words, writing streaks
+
+Inspiration Layer
+
+    Rotating inspirational quotes (every 10 minutes)
+
+    Whisper messages (every 5 minutes)
+
+    Daily affirmations (rotating, with speech option)
+
+    Manual and random affirmation generation
+
+Extras
+
+    Gratitude journal with date tracking
+
+    Goal setting and completion tracker
+
+    Hashtag and keyword tagging system
+
+    Journal streak and total word count display
+
+    Insights panel with stats and charts
+
+Voice Features
+
+    Voice-to-text journaling with speech recognition
+
+    Text-to-speech for prompts, entries, affirmations
+
+    Toggle voice mode on/off
+
+    Play, stop, and read-aloud functionality
+
+Accessibility and Polish
+
+    ARIA labels and accessible elements
+
+    Mobile-first responsive layout
+
+    Loading states for background/image updates
+
+    Typing indicator
+
+    Clean, readable typography with text shadows
+
+    Notifications for all actions (save, delete, copy, etc.)
