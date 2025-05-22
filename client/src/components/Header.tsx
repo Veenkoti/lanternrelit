@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WhisperButton from './WhisperButton';
+
 import { getRandomQuote } from '@/data/popCultureQuotes';
 
 const Header: React.FC<{date?: string, time?: string}> = ({ date, time }) => {
@@ -62,7 +62,7 @@ const Header: React.FC<{date?: string, time?: string}> = ({ date, time }) => {
       
       {/* Whisper button positioned absolutely */}
       <div className="absolute right-6 top-12">
-        <WhisperButton />
+        
       </div>
       
       <h1 className="text-4xl md:text-5xl font-light tracking-wider text-accent-light m-0 leading-tight mt-6">

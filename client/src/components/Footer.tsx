@@ -1,4 +1,6 @@
 import React from 'react';
+import WhisperButton from './WhisperButton';
+
 
 
 interface FooterProps {
@@ -51,7 +53,12 @@ const Footer: React.FC<FooterProps> = ({
           Privacy focused: your entries never leave your device
         </p>
       </div>
-    </footer>
+    
+        <div className="mt-6 flex justify-center">
+          <WhisperButton className="text-yellow-400 text-4xl animate-pulse hover:scale-110 transition duration-300 ease-in-out" />
+        </div>
+
+</footer>
   );
 };
 
