@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 interface FooterProps {
   lanternMode?: boolean;
   toggleLanternMode?: () => void;
@@ -15,10 +16,12 @@ const Footer: React.FC<FooterProps> = ({
 }) => {
   return (
     <footer className="text-center p-6 mt-auto bg-primary-bg-dark backdrop-blur border-t border-border-subtle shadow-[0_-4px_10px_rgba(0,0,0,0.5)]">
-      <div className="flex flex-wrap justify-center gap-4 mb-4">
+      
+        {<div className="flex flex-wrap justify-center gap-4 mb-4">
         {/* Toggle Lantern Mode Button */}
         <button 
           className="bg-secondary-bg-light text-text-light border border-border-subtle px-5 py-3 rounded-lg font-semibold transition hover:bg-button-hover-bg hover:-translate-y-0.5 hover:border-accent-medium active:translate-y-0 active:bg-button-active-bg shadow-lg min-w-[160px] flex items-center justify-center gap-2"
+          onClick={toggleNightMode}
           onClick={toggleLanternMode}
         >
           <img 
@@ -27,13 +30,6 @@ const Footer: React.FC<FooterProps> = ({
             className="h-5 w-auto" 
           />
           <span>{lanternMode ? 'Disable Lantern' : 'Enable Lantern'}</span>
-        </button>
-        
-        {/* Night Mode Button */}
-        <button 
-          className="bg-secondary-bg-light text-text-light border border-border-subtle px-5 py-3 rounded-lg font-semibold transition hover:bg-button-hover-bg hover:-translate-y-0.5 hover:border-accent-medium active:translate-y-0 active:bg-button-active-bg shadow-lg min-w-[160px] flex items-center justify-center gap-2"
-        >
-          <span>Night Mode</span>
         </button>
         
         {/* Clear All Button */}

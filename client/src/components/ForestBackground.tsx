@@ -11,7 +11,7 @@ const ForestBackground: React.FC<ForestBackgroundProps> = ({ lanternMode, isNigh
   // Fade in effect
   useEffect(() => {
     setOpacity(0);
-    const timer = setTimeout(() => setOpacity(1), 50);
+    const timer = setTimeout(() => setOpacity(1), 1000);
     return () => clearTimeout(timer);
   }, [lanternMode, isNightMode]);
   
@@ -81,3 +81,11 @@ const ForestBackground: React.FC<ForestBackgroundProps> = ({ lanternMode, isNigh
 };
 
 export default ForestBackground;
+  // Track time every 5 minutes to force a new background
+  useEffect(() => {
+    const bgInterval = setInterval(() => {
+      setOpacity(0);
+      setTimeout(() => setOpacity(1), 1000);
+    }, 5 * 60 * 1000); // 5 minutes
+    return () => clearInterval(bgInterval);
+  }, []);

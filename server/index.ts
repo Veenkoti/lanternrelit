@@ -56,7 +56,17 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
+  
+import path from "path";
+
+const staticPath = path.resolve(__dirname, "public");
+app.use(express.static(staticPath));
+
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(staticPath, "index.html"));
+});
+
+// ALWAYS serve the app on port 5000
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = 5000;

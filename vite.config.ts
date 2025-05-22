@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
-    // Replit plugins removed for production deployment
+    // Removed Replit plugin for production
   ],
   resolve: {
     alias: {
