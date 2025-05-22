@@ -46,7 +46,7 @@ const Footer: React.FC<FooterProps> = ({
           Northern Journal • Your words, your journey
         </p>
         <p className="opacity-60 text-xs">
-          Built by Veenkoti Studios © {new Date().getFullYear()} • Let silence be your sanctuary
+          {`Built by Veenkoti Studios © ${new Date().getFullYear()} • Let silence be your sanctuary`}
         </p>
         <p className="opacity-60 text-xs mt-1 italic">
           Privacy focused: your entries never leave your device
